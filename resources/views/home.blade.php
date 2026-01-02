@@ -26,7 +26,7 @@
         </div>
     </section>
 
-    <!-- Court Categories Section -->
+    <!-- Categories Section -->
     <section id="court-categories" class="py-16 md:py-24 bg-neutral-50">
         <div class="container mx-auto px-4">
             <div class="text-center max-w-3xl mx-auto mb-12 md:mb-16">
