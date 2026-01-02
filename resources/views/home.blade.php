@@ -43,12 +43,20 @@
                 @forelse($categories as $category)
                     @php
                         if ($category->image) {
-                            $imageUrl = Storage::url($category->image);
+                            $imageUrl = Str::startsWith($category->image, 'http') 
+                                ? $category->image 
+                                : (Str::startsWith($category->image, 'storage/') 
+                                    ? asset($category->image) 
+                                    : Storage::url($category->image));
                         } else {
                             $firstCourt = $category->courts->first();
                             $firstImage = $firstCourt ? $firstCourt->images->first() : null;
                             $imageUrl = $firstImage
-                                ? asset($firstImage->image_path)
+                                ? (Str::startsWith($firstImage->image_path, 'http')
+                                    ? $firstImage->image_path
+                                    : (Str::startsWith($firstImage->image_path, 'storage/')
+                                        ? asset($firstImage->image_path)
+                                        : Storage::url($firstImage->image_path)))
                                 : 'https://images.unsplash.com/photo-1534438327276-14e5300c3a48?w=800&h=500&fit=crop';
                         }
 
