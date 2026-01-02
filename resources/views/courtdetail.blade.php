@@ -6,35 +6,38 @@
     <div class=" container mx-auto">
         <!-- Main Grid: Left Content + Right Sticky Summary -->
         <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
-            
+
             <!-- LEFT SIDE: Scrollable Content (2 columns) -->
             <div class="lg:col-span-2 space-y-8">
-                
+
                 <!-- Category Card -->
                 <div class="pt-8">
-                    @if ($category)
-                        @php
-                            // Keep image mapping for aesthetics since DB might not have images
-                            $images = [
-                                1 => 'https://images.unsplash.com/photo-1626224583764-f87db24ac4ea?w=400', // Indoor
-                                2 => 'https://images.unsplash.com/photo-1622163642998-1ea32b0bbc67?w=400', // Outdoor
-                                3 => 'https://images.unsplash.com/photo-1622279457486-62dcc4a431d6?w=400', // Semi
-                            ];
-                            $bgColors = [
-                                1 => 'bg-purple-50 border-purple-600',
-                                2 => 'bg-green-50 border-green-600',
-                                3 => 'bg-blue-50 border-blue-600',
-                            ];
-                            // Default fallback
-                            if ($category->image) {
-                                $img = Str::startsWith($category->image, 'http')
-                                    ? $category->image
-                                    : Storage::url($category->image);
-                            } else {
-                                $img = $images[$category->id] ?? 'https://via.placeholder.com/400x200';
-                            }
-                            $bg = $bgColors[$category->id] ?? 'bg-gray-50 border-gray-600';
-                        @endphp
+                    @if (isset($category) && $category)
+                            @php
+                                // --- LOGIKA GAMBAR PADEL ---
+                                $name = strtolower($category->category_name);
+
+                                // 1. Gambar Padel Semi-Outdoor
+                                if (Str::contains($name, ['semi'])) {
+                                    $imageUrl = asset('images/padel-semi-outdoor.jpg');
+                                }
+                                // 2. Gambar Padel Indoor
+                                elseif (Str::contains($name, ['indoor', 'dalam'])) {
+                                    $imageUrl = asset('images/padel-indoor.jpg');
+                                }
+                                // 3. Gambar Padel Outdoor
+                                elseif (Str::contains($name, ['outdoor', 'luar'])) {
+                                    $imageUrl = asset('images/padel-outdoor.jpg');
+                                }
+
+                                // --- Warna Background ---
+                                $bgColors = [
+                                    1 => 'bg-purple-50 border-purple-600',
+                                    2 => 'bg-green-50 border-green-600',
+                                    3 => 'bg-blue-50 border-blue-600',
+                                ];
+                                $bg = $bgColors[$category->id] ?? 'bg-gray-50 border-gray-600';
+                            @endphp
 
                         <div class="border-2 {{ $bg }} rounded-xl p-6 transition transform hover:scale-[1.02] duration-300">
                             <div class="flex justify-between items-start mb-4">
@@ -44,7 +47,7 @@
                                 </span>
                             </div>
                             <div class="relative overflow-hidden rounded-lg mb-4 shadow-md group">
-                                <img src="{{ $img }}" alt="{{ $category->category_name }}"
+                                <img src="{{ $imageUrl }}" alt="{{ $category->category_name }}"
                                     class="w-full h-48 object-cover transform group-hover:scale-110 transition duration-500">
                                 <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 group-hover:opacity-100 transition duration-300 flex items-end p-4">
                                     <p class="text-white font-semibold text-sm">Best choice for professionals</p>
@@ -60,16 +63,24 @@
                         </div>
 
                     @else
-                        <div class="text-center py-8">
-                            <p class="text-gray-500">Kategori tidak ditemukan. Silakan pilih kategori lapangan terlebih dahulu.</p>
-                            <a href="/" class="text-blue-700 font-bold hover:underline">Kembali ke Home</a>
-                        </div>
+                        <div class="bg-white rounded-xl p-8 text-center border border-neutral-200 shadow-sm">
+                                <div class="inline-flex items-center justify-center w-16 h-16 rounded-full bg-blue-50 mb-4">
+                                    <svg class="w-8 h-8 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10" />
+                                    </svg>
+                                </div>
+                                <h3 class="text-xl font-bold text-gray-800 mb-2">Belum Memilih Lapangan</h3>
+                                <p class="text-gray-500 mb-6">Silakan kembali ke halaman utama untuk memilih jenis lapangan Padel Anda.</p>
+                                <a href="/" class="inline-block bg-blue-600 text-white px-6 py-3 rounded-lg font-semibold hover:bg-blue-700 transition">
+                                    Pilih Lapangan di Home
+                                </a>
+                            </div>
                     @endif
                 </div>
 
                 <!-- Court Selection, Date & Time Slots - Combined -->
                 <div class="bg-white rounded-2xl border-neutral-200 p-8 space-y-6">
-                    
+
                   <!-- Court Select & Date - Horizontal -->
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                         <!-- Court Select -->
@@ -136,14 +147,14 @@
                             @endphp
                             {{-- @php
                             $disabledSlots = [];
-                        
+
                             foreach ($bookedSlots as $booking) {
                                 $start = substr($booking->start_time, 0, 5);
                                 $end   = substr($booking->end_time, 0, 5);
-                        
+
                                 foreach ($timeSlots as $slot) {
                                     [$slotStart, $slotEnd] = explode(' - ', $slot);
-                        
+
                                     if ($slotStart < $end && $slotEnd > $start) {
                                         $disabledSlots[] = $slot;
                                     }
@@ -152,7 +163,7 @@
                         @endphp --}}
                             @foreach ($timeSlots as $index => $slot)
                             @php [$slotStart, $slotEnd] = explode(' - ', $slot); @endphp
-                        
+
                             <label class="cursor-pointer">
                                 <input
                                     type="checkbox"
@@ -162,9 +173,9 @@
                                     data-end="{{ $slotEnd }}"
                                     class="hidden peer time-slot-checkbox"
                                 >
-                        
+
                                 <div class="slot-box border-2 border-neutral-200 rounded-md p-2 text-center transition
-    hover:border-neutral-300 peer-checked:bg-blue-600 
+    hover:border-neutral-300 peer-checked:bg-blue-600
     peer-checked:border-blue-600 peer-checked:text-white">
 
                                     <p class="font-semibold text-sm">{{ $slot }}</p>
@@ -205,9 +216,9 @@
                                 <span class="font-semibold text-neutral-800">Duration:</span>
                                 <span id="summary_duration" class="text-neutral-500">0 hours</span>
                             </div>
-                            
+
                         </div>
-                        
+
                         <hr class="border-neutral-300">
 
                         <div class="flex justify-between items-center mt-2 py-4">
@@ -216,10 +227,10 @@
                         </div>
 
                         <button id="continue_btn"
-                            class="w-full bg-blue-600 text-white px-8 py-4 rounded-lg font-semibold text-lg 
-                            hover:bg-blue-700 hover:shadow-lg transition 
-                            disabled:bg-neutral-300 disabled:text-neutral-600 
-                            disabled:cursor-not-allowed" 
+                            class="w-full bg-blue-600 text-white px-8 py-4 rounded-lg font-semibold text-lg
+                            hover:bg-blue-700 hover:shadow-lg transition
+                            disabled:bg-neutral-300 disabled:text-neutral-600
+                            disabled:cursor-not-allowed"
                             disabled>
                             Book now
                         </button>
@@ -235,7 +246,7 @@
     {{-- <footer class="bg-gray-900 text-gray-300">
         <div class="container mx-auto px-4 py-16">
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12">
-                
+
                 <!-- Company Info -->
                 <div>
                     <h3 class="text-white text-2xl font-bold mb-6">Courtletics</h3>
@@ -530,7 +541,7 @@
 
     {{-- <!-- Price Preview Box -->
     <div id="price_preview_box"
-        class="mt-6 p-4 bg-white rounded-lg border border-gray-100 shadow-sm opacity-0 
+        class="mt-6 p-4 bg-white rounded-lg border border-gray-100 shadow-sm opacity-0
                transition-all duration-300 transform translate-y-2">
         <div class="flex justify-between items-center">
             <span class="text-gray-500 text-sm">Hourly Rate</span>

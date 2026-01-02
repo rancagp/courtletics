@@ -56,6 +56,7 @@
 
     </main>
 
+    {{-- Footer --}}
     <footer class="bg-gray-900 text-gray-300">
         <div class="container mx-auto px-4 py-12 md:py-16">
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 md:gap-12">

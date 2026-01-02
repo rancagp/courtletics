@@ -36,27 +36,23 @@
             </div>
 
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
-                @forelse($categories as $category)
-                    @php
-                        // Logika untuk mengambil gambar
-                        if ($category->image) {
-                            $imageUrl = Str::startsWith($category->image, 'http')
-                                ? $category->image
-                                : (Str::startsWith($category->image, 'storage/')
-                                    ? asset($category->image)
-                                    : Storage::url($category->image));
-                        } else {
-                            $firstCourt = $category->courts->first();
-                            $firstImage = $firstCourt ? $firstCourt->images->first() : null;
-                            $imageUrl = $firstImage
-                                ? (Str::startsWith($firstImage->image_path, 'http')
-                                    ? $firstImage->image_path
-                                    : (Str::startsWith($firstImage->image_path, 'storage/')
-                                        ? asset($firstImage->image_path)
-                                        : Storage::url($firstImage->image_path)))
-                                : 'https://images.unsplash.com/photo-1534438327276-14e5300c3a48?w=800&h=500&fit=crop';
-                        }
-                    @endphp
+                    @forelse($categories as $category)
+                        @php
+                            $name = strtolower($category->category_name);
+
+                            // 1. Gambar Padel Semi-Outdoor
+                            if (Str::contains($name, ['semi'])) {
+                                $imageUrl = asset('images/padel-semi-outdoor.jpg');
+                            }
+                            // 2. Gambar Padel Indoor
+                            elseif (Str::contains($name, ['indoor', 'dalam'])) {
+                                $imageUrl = asset('images/padel-indoor.jpg');
+                            }
+                            // 3. Gambar Padel Outdoor
+                            elseif (Str::contains($name, ['outdoor', 'luar'])) {
+                                $imageUrl = asset('images/padel-outdoor.jpg');
+                            }
+                        @endphp
 
                     <div class="group bg-white rounded-2xl shadow-sm hover:shadow-xl transition-all duration-300 overflow-hidden border border-neutral-100 flex flex-col h-full transform hover:-translate-y-1">
                         <div class="relative h-56 overflow-hidden">
