@@ -102,9 +102,9 @@
     </section>
 
     {{-- Court Facilities --}}
-    <section class="min-h-screen px-4 md:px-8 py-12 md:py-16 bg-neutral-100">
+    <section class="py-16 md:py-20 bg-neutral-50 mb-0 md:mb-0">
         <div class="container mx-auto">
-            <div class="text-center mb-16 md:mb-16">
+            <div class="text-center mb-8 md:mb-12">
                 <h1 class="text-3xl md:text-5xl font-bold text-blue-600 mb-2 tracking-tight">
                     Our facilities
                 </h1>
@@ -176,8 +176,8 @@
     </section>
 
     {{-- Testimonials --}}
-    <section class="min-h-screen px-4 md:px-8 py-12 md:py-16">
-        <div class="max-w-7xl mx-auto space-y-16">
+    <section class="py-16 md:py-20 px-4 md:px-8 mb-20 md:mb-24">
+        <div class="max-w-7xl mx-auto space-y-8">
 
             {{-- Header --}}
             <div class="text-center">
