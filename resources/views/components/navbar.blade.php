@@ -1,8 +1,11 @@
 
 
-<nav class="w-full bg-white shadow-md flex fixed top-0 left-0 right-0 z-50">
-    <div class="container mx-auto">
-        <div class="p-4 flex justify-between items-center">
+<nav class="w-full bg-white shadow-md flex flex-col fixed top-0 left-0 right-0 z-50">
+    <!-- Datetime Display -->
+    <x-datetime-display />
+    
+    <div class="w-full">
+        <div class="px-4 py-2 flex justify-between items-center">
             <!-- Logo -->
             <a href="/" class="w-[280px] text-2xl font-bold text-neutral-800">Courtletics</a>
 
