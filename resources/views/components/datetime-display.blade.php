@@ -1,4 +1,4 @@
-<div class="w-full bg-gray-100 text-gray-700 text-xs sm:text-sm py-1 px-4 flex items-center justify-between overflow-hidden border-b border-gray-200">
+<div class="w-full bg-white text-gray-700 text-xs sm:text-sm py-1 px-4 flex items-center justify-between overflow-hidden border-b border-gray-200">
     <!-- Date Section -->
     <div class="flex-shrink-0 flex items-center space-x-1 sm:space-x-2">
         <svg xmlns="http://www.w3.org/2000/svg" class="h-3 w-3 sm:h-4 sm:w-4 text-gray-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">

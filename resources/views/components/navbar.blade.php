@@ -5,7 +5,7 @@
     <x-datetime-display />
     
     <div class="w-full">
-        <div class="px-4 py-2 flex justify-between items-center">
+        <div class="px-4 py-4 flex justify-between items-center">
             <!-- Logo -->
             <a href="/" class="w-[280px] text-2xl font-bold text-neutral-800">Courtletics</a>
 
