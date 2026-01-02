@@ -3,28 +3,32 @@
     <x-datetime-display />
 
     <div class="w-full">
-        <div class="px-4 py-4 flex justify-between items-center">
+        <div class="px-4 py-4 flex items-center">
             <!-- Logo -->
-            <a href="/" class="w-auto text-2xl font-bold text-neutral-800">Courtletics</a>
+            <a href="/" class="text-2xl font-bold text-neutral-800 absolute left-4">Courtletics</a>
+            
+            <!-- Navigation Links (Desktop) - Center Aligned -->
+            <div class="w-full flex justify-center">
 
-            <!-- Navigation Links (Desktop) -->
-            <div class="hidden md:flex items-center space-x-8">
-                <a href="/"
-                    class="text-neutral-400 hover:text-neutral-600 font-medium transition {{ request()->is('/') ? 'font-semibold text-neutral-800 border-b-2 border-neutral-800' : '' }}">
-                    Home
-                </a>
-                <a href="/about"
-                    class="text-neutral-400 hover:text-neutral-600 font-medium transition {{ request()->is('about') ? 'font-semibold text-neutral-800 border-b-2 border-neutral-800' : '' }}">
-                    About
-                </a>
-                <a href="/book-court"
-                    class="text-neutral-400 hover:text-neutral-600 font-medium transition {{ request()->is('book-court*') ? 'font-semibold text-neutral-800 border-b-2 border-neutral-800' : '' }}">
-                    Book Court
-                </a>
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="/"
+                        class="text-neutral-400 hover:text-neutral-600 font-medium transition {{ request()->is('/') ? 'font-semibold text-neutral-800 border-b-2 border-neutral-800' : '' }}">
+                        Home
+                    </a>
+                    <a href="/about"
+                        class="text-neutral-400 hover:text-neutral-600 font-medium transition {{ request()->is('about') ? 'font-semibold text-neutral-800 border-b-2 border-neutral-800' : '' }}">
+                        About
+                    </a>
+                    <a href="/book-court"
+                        class="text-neutral-400 hover:text-neutral-600 font-medium transition {{ request()->is('book-court*') ? 'font-semibold text-neutral-800 border-b-2 border-neutral-800' : '' }}">
+                        Book Court
+                    </a>
+                </div>
+
             </div>
-
+            
             <!-- Auth (Desktop) -->
-            <div class="hidden md:flex items-center space-x-4">
+            <div class="hidden md:flex items-center space-x-4 absolute right-4">
                 @auth
                     @if (Auth::user()->isAdmin())
                         <a href="{{ route('admin.dashboard') }}"
