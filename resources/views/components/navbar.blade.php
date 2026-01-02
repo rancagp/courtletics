@@ -1,13 +1,11 @@
-
-
 <nav class="w-full bg-white shadow-md flex flex-col fixed top-0 left-0 right-0 z-50">
     <!-- Datetime Display -->
     <x-datetime-display />
-    
+
     <div class="w-full">
         <div class="px-4 py-4 flex justify-between items-center">
             <!-- Logo -->
-            <a href="/" class="w-[280px] text-2xl font-bold text-neutral-800">Courtletics</a>
+            <a href="/" class="w-auto text-2xl font-bold text-neutral-800">Courtletics</a>
 
             <!-- Navigation Links (Desktop) -->
             <div class="hidden md:flex items-center space-x-8">
@@ -106,7 +104,7 @@
         </div>
 
         <!-- Mobile Menu -->
-        <div id="mobile-menu" class="hidden md:hidden border-t 
+        <div id="mobile-menu" class="hidden md:hidden border-t
                border-neutral-200 pt-2 rounded-b-lg relative z-40">
             <div class="flex flex-col p-4 space-y-4">
                 <a href="/" class="text-neutral-700 hover:text-neutral-900 font-medium transition">
@@ -167,7 +165,7 @@
     // Toggle mobile menu
     mobileMenuBtn.addEventListener('click', function() {
         const isHidden = mobileMenu.classList.contains('hidden');
-        
+
         if (isHidden) {
             // Tampilkan menu
             mobileMenu.classList.remove('hidden');

@@ -39,7 +39,7 @@
     </style>
 </head>
 
-<body class="bg-gray-50 text-gray-800 flex flex-col min-h-screen smooth-scroll">
+<body class="bg-gray-50 flex flex-col min-h-screen smooth-scroll">
 
     {{ $slot }}
 
