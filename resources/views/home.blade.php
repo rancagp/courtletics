@@ -20,7 +20,7 @@
             </p>
 
             <button onclick="document.getElementById('court-categories').scrollIntoView({ behavior: 'smooth' })"
-                class="bg-blue-600 text-white px-10 md:px-12 py-3 md:py-4 rounded-lg text-base md:text-lg font-semibold transition-all duration-300 cursor-pointer shadow-sm hover:shadow-lg transform hover:scale-105 hover:bg-blue-700">
+                class="bg-purple-600 text-white px-10 md:px-12 py-3 md:py-4 rounded-lg text-base md:text-lg font-semibold transition-all duration-300 cursor-pointer shadow-sm hover:shadow-lg transform hover:scale-105 hover:bg-blue-700">
                 Play now
             </button>
         </div>
@@ -552,6 +552,15 @@
                     }
                 });
             });
+        });
+
+        // Ambil elemen hamburger button dan dropdown
+        const hamburger = document.getElementById('hamburger');
+        const dropdown = document.getElementById('dropdown');
+
+        // Tambahkan event listener untuk toggle dropdown
+        hamburger.addEventListener('click', function() {
+            dropdown.classList.toggle('hidden');
         });
     </script>
 </x-layout>

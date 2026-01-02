@@ -1,16 +1,10 @@
-<nav class="bg-white h-[72px] flex items-center shadow-sm fixed top-0 left-0 right-0 z-50">
-    <div class="container mx-auto px-4">
-        <div class="flex justify-between items-center">
 
+
+<nav class="w-full bg-white shadow-md flex fixed top-0 left-0 right-0 z-50">
+    <div class="container mx-auto">
+        <div class="p-4 flex justify-between items-center">
             <!-- Logo -->
-            <a href="/" class="flex items-center gap-2">
-                <div class="w-8 h-8 bg-neutral-800 rounded-lg flex items-center justify-center">
-                    <span class="text-white font-bold text-l">C</span>
-                </div>
-                <span class="text-xl font-bold text-neutral-900">
-                    Courtletics
-                </span>
-            </a>
+            <a href="/" class="w-[280px] text-2xl font-bold text-neutral-800">Courtletics</a>
 
             <!-- Navigation Links (Desktop) -->
             <div class="hidden md:flex items-center space-x-8">
@@ -33,7 +27,7 @@
                 @auth
                     @if (Auth::user()->isAdmin())
                         <a href="{{ route('admin.dashboard') }}"
-                            class="text-gray-700 hover:text-purple-600 font-medium transition">
+                            class="text-neutral-700 hover:text-blue-600 font-medium transition">
                             Admin Panel
                         </a>
                     @endif
@@ -41,7 +35,7 @@
                     <!-- Profile dropdown -->
                     <div class="relative" x-data="{ open: false }">
                         <button @click="open = !open"
-                            class="flex items-center space-x-2 text-gray-700 hover:text-purple-600 font-medium transition">
+                            class="flex items-center space-x-2 text-neutral-700 hover:text-blue-600 font-medium transition">
                             <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 20 20">
                                 <path fill-rule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z"
                                     clip-rule="evenodd" />
@@ -64,12 +58,12 @@
                             x-transition:leave-end="transform opacity-0 scale-95"
                             class="absolute right-0 mt-2 w-48 bg-white rounded-lg shadow-lg py-2 z-50">
                             <a href="/profile"
-                                class="block w-[120px] px-4 py-2 text-neutral-700 hover:bg-purple-50 hover:text-blue-600 transition">
+                                class="block w-[120px] px-4 py-2 text-neutral-700 hover:bg-blue-50 hover:text-blue-600 transition">
                                 Profile
                             </a>
                             @if (!Auth::user()->isAdmin())
                                 <a href="/my-bookings"
-                                    class="block w-[120px] px-4 py-2 text-neutral-700 hover:bg-purple-50 hover:text-blue-600 transition">
+                                    class="block w-[120px] px-4 py-2 text-neutral-700 hover:bg-blue-50 hover:text-blue-600 transition">
                                     My Bookings
                                 </a>
                             @endif
@@ -99,39 +93,41 @@
 
             <!-- Mobile Menu Button -->
             <button id="mobile-menu-btn" class="md:hidden text-neutral-800 focus:outline-none">
-                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <svg id="hamburger-icon" class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+                </svg>
+                <svg id="close-icon" class="w-6 h-6 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
                 </svg>
             </button>
         </div>
 
         <!-- Mobile Menu -->
-        <div id="mobile-menu"
-            class="hidden md:hidden mt-3 pb-4 border-t border-neutral-200 pt-4
-                    bg-white shadow-lg rounded-b-lg relative z-40">
-            <div class="flex flex-col space-y-4">
-                <a href="/" class="text-gray-700 hover:text-purple-600 font-medium transition">
+        <div id="mobile-menu" class="hidden md:hidden border-t 
+               border-neutral-200 pt-2 rounded-b-lg relative z-40">
+            <div class="flex flex-col p-4 space-y-4">
+                <a href="/" class="text-neutral-700 hover:text-neutral-900 font-medium transition">
                     Home
                 </a>
-                <a href="/about" class="text-gray-700 hover:text-purple-600 font-medium transition">
+                <a href="/about" class="text-neutral-700 hover:text-neutral-900 font-medium transition">
                     About
                 </a>
-                <a href="/book-court" class="text-gray-700 hover:text-purple-600 font-medium transition">
+                <a href="/book-court" class="text-neutral-700 hover:text-neutral-900 font-medium transition">
                     Book Court
                 </a>
 
                 @auth
                     @if (Auth::user()->isAdmin())
                         <a href="{{ route('admin.dashboard') }}"
-                            class="text-gray-700 hover:text-purple-600 font-medium transition">
+                            class="text-neutral-700 hover:text-blue-600 font-medium transition">
                             Admin Panel
                         </a>
                     @endif
-                    <a href="/profile" class="text-gray-700 hover:text-purple-600 font-medium transition">
+                    <a href="/profile" class="text-neutral-700 hover:text-blue-600 font-medium transition">
                         Profile
                     </a>
                     @if (!Auth::user()->isAdmin())
-                        <a href="/my-bookings" class="text-gray-700 hover:text-purple-600 font-medium transition">
+                        <a href="/my-bookings" class="text-neutral-700 hover:text-blue-600 font-medium transition">
                             My Bookings
                         </a>
                     @endif
@@ -143,24 +139,64 @@
                         </button>
                     </form>
                 @else
-                    <a href="/login" class="text-gray-700 hover:text-purple-600 font-medium transition">
+                <div class="w-full flex justify-between gap-4">
+                    <a href="/login" class="bg-neutral-50 flex-1 text-blue-600 px-6 py-2 rounded-lg border border-neutral-300 font-medium text-center hover:bg-neutral-200">
                         Login
                     </a>
                     <a href="/register"
-                        class="bg-gradient-to-r from-purple-600 to-indigo-600 text-white px-6 py-2 rounded-lg font-medium text-center">
+                        class="bg-blue-600 text-white flex-1 px-6 py-2 rounded-lg font-medium text-center hover:bg-blue-700">
                         Sign Up
                     </a>
+                </div>
                 @endauth
             </div>
         </div>
     </div>
-
-    <script>
-        const btn = document.getElementById('mobile-menu-btn');
-        const menu = document.getElementById('mobile-menu');
-
-        btn.addEventListener('click', () => {
-            menu.classList.toggle('hidden');
-        });
-    </script>
 </nav>
+
+<script>
+    // Ambil elemen-elemen yang diperlukan
+    const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+    const mobileMenu = document.getElementById('mobile-menu');
+    const hamburgerIcon = document.getElementById('hamburger-icon');
+    const closeIcon = document.getElementById('close-icon');
+
+    // Toggle mobile menu
+    mobileMenuBtn.addEventListener('click', function() {
+        const isHidden = mobileMenu.classList.contains('hidden');
+        
+        if (isHidden) {
+            // Tampilkan menu
+            mobileMenu.classList.remove('hidden');
+            hamburgerIcon.classList.add('hidden');
+            closeIcon.classList.remove('hidden');
+        } else {
+            // Sembunyikan menu
+            mobileMenu.classList.add('hidden');
+            hamburgerIcon.classList.remove('hidden');
+            closeIcon.classList.add('hidden');
+        }
+    });
+
+    // Handle resize window
+    window.addEventListener('resize', function() {
+        // Jika lebar layar >= 768px (breakpoint md di Tailwind)
+        if (window.innerWidth >= 768) {
+            // Sembunyikan mobile menu
+            mobileMenu.classList.add('hidden');
+            // Reset icon ke hamburger
+            hamburgerIcon.classList.remove('hidden');
+            closeIcon.classList.add('hidden');
+        }
+    });
+
+    // Optional: Tutup menu ketika link diklik (untuk smooth UX)
+    const mobileMenuLinks = mobileMenu.querySelectorAll('a');
+    mobileMenuLinks.forEach(link => {
+        link.addEventListener('click', function() {
+            mobileMenu.classList.add('hidden');
+            hamburgerIcon.classList.remove('hidden');
+            closeIcon.classList.add('hidden');
+        });
+    });
+</script>
