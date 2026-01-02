@@ -20,7 +20,7 @@
             </p>
 
             <button onclick="document.getElementById('court-categories').scrollIntoView({ behavior: 'smooth' })"
-                class="bg-purple-600 text-white px-10 md:px-12 py-3 md:py-4 rounded-lg text-base md:text-lg font-semibold transition-all duration-300 cursor-pointer shadow-sm hover:shadow-lg transform hover:scale-105 hover:bg-blue-700">
+                class="bg-blue-600 text-white px-10 md:px-12 py-3 md:py-4 rounded-lg text-base md:text-lg font-semibold transition-all duration-300 cursor-pointer shadow-sm hover:shadow-lg transform hover:scale-105 hover:bg-blue-700">
                 Play now
             </button>
         </div>
@@ -146,9 +146,9 @@
     </section>
 
     {{-- Court Facilities --}}
-    <section class="px-4 md:px-8 py-12 md:py-16 bg-neutral-100">
+    <section class="min-h-screen px-4 md:px-8 py-12 md:py-16 bg-neutral-100">
         <div class="container mx-auto">
-            <div class="text-center mb-10 md:mb-16">
+            <div class="text-center mb-16 md:mb-16">
                 <h1 class="text-3xl md:text-5xl font-bold text-blue-600 mb-2 tracking-tight">
                     Our facilities
                 </h1>
@@ -220,69 +220,91 @@
     </section>
 
     {{-- Testimonials --}}
-    <section class="py-16 md:py-20 bg-white">
-        <div class="container mx-auto px-4">
-            <div class="text-center mb-12 md:mb-16">
-                <span class="text-blue-600 font-semibold tracking-widest uppercase text-xs md:text-sm">
-                    — TESTIMONIALS & REVIEWS —
-                </span>
-                <h2 class="text-4xl md:text-5xl font-bold mt-4 mb-2 text-gray-900">
-                    HEAR IT FROM OUR
+    <section class="min-h-screen px-4 md:px-8 py-12 md:py-16">
+        <div class="max-w-7xl mx-auto space-y-16">
+
+            {{-- Header --}}
+            <div class="text-center">
+                <h2 class="text-4xl md:text-5xl font-bold text-blue-600 tracking-tight mb-2">
+                    Here's what people say
                 </h2>
-                <h1 class="text-3xl md:text-5xl font-bold text-gray-900">
-                    PADEL ENTHUSIASTS
-                </h1>
+                <p class="text-neutral-500 text-xl">
+                    Straight from the court, not from marketing
+                </p>
             </div>
 
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-7xl mx-auto">
-                <div
-                    class="bg-white rounded-2xl p-8 border-2 border-neutral-200 hover:border-blue-500 hover:shadow-xl transition-all duration-300">
-                    <div class="flex gap-1 mb-6 justify-center">
-                        <span class="text-yellow-400 text-2xl">★</span>
-                        <span class="text-yellow-400 text-2xl">★</span>
-                        <span class="text-yellow-400 text-2xl">★</span>
-                        <span class="text-yellow-400 text-2xl">★</span>
-                        <span class="text-yellow-400 text-2xl">★</span>
+            {{-- Testimonials Grid --}}
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+
+                {{-- Testimonial Card 1 --}}
+                <div class="flex flex-col h-full bg-white rounded-3xl p-6 shadow-sm hover:shadow-md transition-shadow gap-16">
+                    <div class="flex items-center gap-4">
+                        <div class="w-14 h-14 bg-neutral-200 rounded-full flex-shrink-0 flex text-center 
+                                    font-bold text-neutral-600 items-center justify-center">AK
+                        </div>
+                        <div>
+                            <h3 class="font-semibold text-neutral-900 text-lg">Abdul Kadir</h3>
+                            <div class="flex gap-1 mt-1">
+                                @for($i = 0; $i < 5; $i++)
+                                    <svg class="w-5 h-5 fill-orange-400" viewBox="0 0 20 20">
+                                        <path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z"/>
+                                    </svg>
+                                @endfor
+                            </div>
+                        </div>
                     </div>
-                    <p class="text-neutral-700 text-center mb-8 leading-relaxed">
-                        "The best padel court in Bandung! The facilities are very complete and
-                        well-mantained. The online booking system is very easy."
+
+                    <p class="text-neutral-600 leading-relaxed flex-1">
+                        The service is friendly and professional. Highly recommended!
                     </p>
-                    <h4 class="text-xl font-bold text-center text-neutral-900">Ahmad Rizki</h4>
                 </div>
 
-                <div
-                    class="bg-white rounded-2xl p-8 border-2 border-neutral-200 hover:border-blue-500 hover:shadow-xl transition-all duration-300">
-                    <div class="flex gap-1 mb-6 justify-center">
-                        <span class="text-yellow-400 text-2xl">★</span>
-                        <span class="text-yellow-400 text-2xl">★</span>
-                        <span class="text-yellow-400 text-2xl">★</span>
-                        <span class="text-yellow-400 text-2xl">★</span>
-                        <span class="text-yellow-400 text-2xl">★</span>
+                 <div class="flex flex-col h-full bg-white rounded-3xl p-6 shadow-sm hover:shadow-md transition-shadow gap-16">
+                    <div class="flex items-center gap-4">
+                        <div class="w-14 h-14 bg-neutral-200 rounded-full flex-shrink-0 flex text-center 
+                                    font-bold text-neutral-600 items-center justify-center">AS
+                        </div>
+                        <div>
+                            <h3 class="font-semibold text-neutral-900 text-lg">Ahmad Sadikin</h3>
+                            <div class="flex gap-1 mt-1">
+                                @for($i = 0; $i < 5; $i++)
+                                    <svg class="w-5 h-5 fill-orange-400" viewBox="0 0 20 20">
+                                        <path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z"/>
+                                    </svg>
+                                @endfor
+                            </div>
+                        </div>
                     </div>
-                    <p class="text-neutral-700 text-center mb-8 leading-relaxed">
-                        "Courtletics provides an exceptional playing experience. 
-                        The service is friendly and professional. Highly recommended!"
+
+                    <p class="text-neutral-600 leading-relaxed flex-1">
+                        Perfect place to play padel with friends and family!
                     </p>
-                    <h4 class="text-xl font-bold text-center text-neutral-900">Amalia Nurhaliza</h4>
                 </div>
 
-                <div
-                    class="bg-white rounded-2xl p-8 border-2 border-neutral-200 hover:border-blue-500 hover:shadow-xl transition-all duration-300">
-                    <div class="flex gap-1 mb-6 justify-center">
-                        <span class="text-yellow-400 text-2xl">★</span>
-                        <span class="text-yellow-400 text-2xl">★</span>
-                        <span class="text-yellow-400 text-2xl">★</span>
-                        <span class="text-yellow-400 text-2xl">★</span>
-                        <span class="text-yellow-400 text-2xl">★</span>
+                 <div class="flex flex-col h-full bg-white rounded-3xl p-6 shadow-sm hover:shadow-md transition-shadow gap-16">
+                    <div class="flex items-center gap-4">
+                        <div class="w-14 h-14 bg-neutral-200 rounded-full flex-shrink-0 flex text-center 
+                                    font-bold text-neutral-600 items-center justify-center">OB
+                        </div>
+                        <div>
+                            <h3 class="font-semibold text-neutral-900 text-lg">Omar Bakrie</h3>
+                            <div class="flex gap-1 mt-1">
+                                @for($i = 0; $i < 5; $i++)
+                                    <svg class="w-5 h-5 fill-orange-400" viewBox="0 0 20 20">
+                                        <path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z"/>
+                                    </svg>
+                                @endfor
+                            </div>
+                        </div>
                     </div>
-                    <p class="text-neutral-700 text-center mb-8 leading-relaxed">
-                        "The perfect place to play padel with friends and family.
-                        Affordable prices and best-in-class quality."
+
+                    <p class="text-neutral-600 leading-relaxed flex-1">
+                        Really can't wait to play here next week!
                     </p>
-                    <h4 class="text-xl font-bold text-center text-neutral-900">Budi Santoso</h4>
                 </div>
+
             </div>
+
         </div>
     </section>
 
@@ -552,15 +574,6 @@
                     }
                 });
             });
-        });
-
-        // Ambil elemen hamburger button dan dropdown
-        const hamburger = document.getElementById('hamburger');
-        const dropdown = document.getElementById('dropdown');
-
-        // Tambahkan event listener untuk toggle dropdown
-        hamburger.addEventListener('click', function() {
-            dropdown.classList.toggle('hidden');
         });
     </script>
 </x-layout>
